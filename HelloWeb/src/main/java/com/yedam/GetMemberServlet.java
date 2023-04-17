@@ -13,7 +13,7 @@ import com.yedam.persistence.EmpDAO;
 
 import domain.Employee;
 
-@WebServlet("../../search.html")
+@WebServlet("search/employee/getMemberServlet")
 public class GetMemberServlet extends HttpServlet {
 	
 	@Override

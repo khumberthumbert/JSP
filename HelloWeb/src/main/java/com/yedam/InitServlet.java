@@ -37,7 +37,7 @@ public class InitServlet extends HttpServlet {
 		out.print("<h3>InitPage</h3>");
 		out.print("<a href = 'index.html'>인덱스 페이지로 이동합니다 </a>");
 		
-		
+		  
 		
 	}
 }
