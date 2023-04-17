@@ -13,7 +13,7 @@ import com.yedam.persistence.EmpDAO;
 
 import domain.Employee;
 
-@WebServlet("../../search.html")
+@WebServlet("/getMemberServlet.html")
 public class GetMemberServlet extends HttpServlet {
 	
 	@Override
@@ -44,7 +44,7 @@ public class GetMemberServlet extends HttpServlet {
 			out.print("</table>");
 			out.print("<a href='empList'>목록으로</a>");
 		}else {
-			resp.sendRedirect("search.html");
+			resp.sendRedirect("employee/search.html");
 		}
 		
 		
