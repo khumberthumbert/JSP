@@ -41,7 +41,8 @@ public class AddMemberServlet extends HttpServlet {
 		emp.setJobId(job);
 		emp.setHireDate(hdate);
 		
-		EmpDAO dao = new EmpDAO();
+		EmpDAO dao = EmpDAO.getInstance();
+		
 		boolean result = dao.insertEmployee(emp); 
 		
 		if(result) {

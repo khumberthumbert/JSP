@@ -12,6 +12,13 @@ import com.yedam.common.DAO;
 import domain.Employee;
 
 public class EmpDAO {
+	private static EmpDAO empDao = new EmpDAO();
+	
+	private EmpDAO() {}
+	
+	public static EmpDAO getInstance() {
+		return empDao;
+	}
 	Connection conn;
 	PreparedStatement psmt;
 	ResultSet rs;
@@ -32,6 +39,58 @@ public class EmpDAO {
 			}
 		}
 	
+	//단건조회.
+	public Employee getEmp(int empId) {
+		// 사원번호의 조회결과로 값이 있으면 Employee 반환.
+		// 값이 없으면 null이 반환.
+		conn = DAO.getConnect();
+		String sql = "Select * From employees where employee_id = ?";
+		Employee emp = null;
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, empId);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				emp = new Employee();
+				emp.setEmployeeId(empId);
+				emp.setFirstName(rs.getString("first_name"));
+				emp.setLastName(rs.getString("last_name"));
+				emp.setEmail(rs.getString("email"));
+				emp.setJobId(rs.getString("job_id"));
+				emp.setHireDate(rs.getString("hire_date"));
+				
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		return emp;
+	}
+	
+	//삭제/
+	public boolean deleteEmployee(int empId) {
+		conn = DAO.getConnect();
+		String sql = "Delete From employees where employee_id = ?";
+		
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, empId);
+			int r = psmt.executeUpdate();
+			System.out.println("처리된 건수 : " + r);
+			if(r>0) {
+				return true;
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		
+		
+		return false;
+		
+	}
 	
 	//사원등록.
 	public boolean insertEmployee(Employee emp) {
