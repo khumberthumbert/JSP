@@ -39,6 +39,9 @@ public class EmpDAO {
 			}
 		}
 	
+	//수정처리.
+
+	
 	//단건조회.
 	public Employee getEmp(int empId) {
 		// 사원번호의 조회결과로 값이 있으면 Employee 반환.
@@ -117,6 +120,30 @@ public class EmpDAO {
 			e.printStackTrace();
 			
 		} finally {
+			close();
+		}
+		return false;
+	}
+	//사원수정
+	public boolean updateMember(Employee emp) {
+		conn = DAO.getConnect();
+		String sql = "UPDATE employees set first_name = ?, last_name =?, email = ? where employee_id = ?";
+		
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, emp.getFirstName());
+			psmt.setString(2, emp.getLastName());
+			psmt.setString(3, emp.getEmail());
+			psmt.setInt(4, emp.getEmployeeId());
+			
+			int r = psmt.executeUpdate();
+			System.out.println("처리된 건수 : " + r);
+			if(r>0) {
+				return true;
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
 			close();
 		}
 		return false;

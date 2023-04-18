@@ -1,13 +1,7 @@
 package com.yedam;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,14 +9,10 @@ import com.yedam.persistence.EmpDAO;
 
 import domain.Employee;
 
-@WebServlet("/addMemberServlet")
+public class AddMemberControl implements Control{
 
-public class AddMemberServlet extends HttpServlet {
-	//생성자, init, service 
 	@Override
-	protected void service(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		
+	public void exec(HttpServletRequest req, HttpServletResponse resp) {
 		String fname = req.getParameter("fname"); //input name="fname"
 		String lname = req.getParameter("lname");
 		String email = req.getParameter("email");
@@ -37,14 +27,16 @@ public class AddMemberServlet extends HttpServlet {
 		emp.setHireDate(hdate);
 		
 		EmpDAO dao = EmpDAO.getInstance(); 
-		
-		boolean result = dao.insertEmployee(emp); 
-		
-		if(result) {
-			resp.sendRedirect("empList");
-		} else {
-			resp.sendRedirect("/addForm.html");
-		}
+			try {
+				if(dao.insertEmployee(emp)) {
+					resp.sendRedirect("main.do");
+				}else {
+					resp.sendRedirect("addMemberForm.do");
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		
 	}
-}
+		
+	}
