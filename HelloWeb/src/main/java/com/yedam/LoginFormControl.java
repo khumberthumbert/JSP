@@ -11,7 +11,7 @@ public class LoginFormControl implements Control {
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) {
 		// TODO 아이디/ 이메일 입력하는 화면.
-		String path = "WEB-INF/views/loginForm.jsp";
+		String path = "WEB-INF/views/loginForm.jsp"; //페이지를 찾아줌
 		try {
 			req.getRequestDispatcher(path).forward(req, resp);
 		} catch (ServletException | IOException e) {

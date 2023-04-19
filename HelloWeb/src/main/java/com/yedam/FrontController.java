@@ -39,6 +39,10 @@ public class FrontController extends HttpServlet{
 		
 		//로그인 화면(아이디/이메일 입력화면)
 		map.put("/loginForm.do", new LoginFormControl());
+		//로그인 처리
+		map.put("/login.do", new LoginControl());
+		//로그아웃 처리
+		map.put("/logout.do", new LogoutControl());
 	}
 	
 	@Override
@@ -56,7 +60,7 @@ public class FrontController extends HttpServlet{
 		System.out.println(page);
 		System.out.println(map.get(page));
 		
-		Control control = map.get(page);
+		Control control = map.get(page); // 중요한 부분.
 		control.exec(req, resp);
 	}
 	

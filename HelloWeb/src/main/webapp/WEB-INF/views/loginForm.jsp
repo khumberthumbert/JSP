@@ -135,7 +135,7 @@ span.psw {
 
 <div id="id01" class="modal">
   
-  <form class="modal-content animate" action="/action_page.php" method="post">
+  <form class="modal-content animate" action="login.do" method="post"> <!-- 프론트 컨트롤러를 갖고 오겠다는 뜻. -->
     <div class="imgcontainer">
       <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
       <img src="images/img.png" alt="Avatar" class="avatar">

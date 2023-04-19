@@ -39,8 +39,6 @@ public class EmpDAO {
 			}
 		}
 	
-	//수정처리.
-
 	
 	//단건조회.
 	public Employee getEmp(int empId) {
@@ -148,6 +146,37 @@ public class EmpDAO {
 		}
 		return false;
 	}
+	
+	//로그인(사원번호, 이메일)
+	public Employee loginCheck(Employee emp) {
+		conn = DAO.getConnect();
+		String sql = "Select * from employees where employee_id=? and email=?"; //?는 파라메타로 받아서 처리하겠습니다~
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, emp.getEmployeeId());//첫번째 파라메타
+			psmt.setString(2, emp.getEmail());
+			
+			rs = psmt.executeQuery();//쿼리 결과 반환.
+			if(rs.next())	{ //한권이면 굳이 와일 안써도 됨.
+				Employee result = new Employee();
+				result.setEmployeeId(rs.getInt("employee_id"));
+				result.setFirstName(rs.getString("first_name"));
+				result.setLastName(rs.getString("last_name"));
+				result.setEmail(rs.getString("email"));
+				result.setJobId(rs.getString("job_id"));
+				
+				return result; //값이 있으면 result를 리턴. 값이 없으면 catch.
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		return null;
+	}
+	
 	
 	//사원목록
 	public List<Employee> getEmpList() {
