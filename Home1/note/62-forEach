@@ -1,0 +1,25 @@
+<c:forEach var="n" items="${list}" begin="1" end="3" varStatus="">
+
+63강
+JSTL:forEach문으로 Pager 번호 만들기
+JSTL로 Pager 번호 만들기
+페이저 게시판 밑에 있는 숫자.
+
+<c:forEach var="i" begin="0" end="4"> //비긴과 엔드는 시작과 끝. => 5번 반복.<li><a class="-text- orange bold" href="?p=${startNum+i}&t=&q" >${1+i}</a></li>
+</c:forEach>
+
+pager번호 생성하기.
+번호를 만드는 매개 값
+1 2 3 4 5 <- ?p=3
+?p=17 -> 16 17 18 19 20
+?p=19 -> 16 17 18 19 20
+페이지 넘버를 구하고 스타트 넘버 거리만큼 빼주기. 나머지연산 퍼센트연산자를 이용해서. 17 % 5 다가 빼기를 보정 해주면 거리를 구할 수 있음
+page=3 -> 3-(3-1)%5 -> 1
+page=21 -> 21-(21-1)%5 -> 21
+startNum = page - (page-1)%5;
+
+<c:set -> 임시변수를 만들 때 씀.
+<c:set var="page" value="${(pram.p == null)?1:param.p}" />
+<c:set var="startNum" value="${page-(page-1)%5}" />
+
+64강 JSTL: if문으로 이전/다음 pager 링크 만들기
