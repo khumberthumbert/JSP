@@ -38,8 +38,14 @@
 		</tr>
 		<tr>
 			<td colspan="2" align="center">
+			<c:choose>
+			<c:when test="${noticeInfo.noticeWriter == id}">
 				<button type="submit">수정</button>
-				<button type="button" onclick="location.href='noticeList.do'">목록</button>
+			</c:when>
+			<c:otherwise>
+				<button type="button" onclick="location.href='noticeList.do?page=${pageNum}'">목록</button>
+			</c:otherwise>
+			</c:choose>
 			</td>
 	</table>
 </form>
