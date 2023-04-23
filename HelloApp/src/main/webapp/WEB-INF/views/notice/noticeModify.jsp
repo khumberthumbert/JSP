@@ -22,10 +22,10 @@
 			<td><input type="text" name="writer" value="${noticeInfo.noticeWriter }"  ></td>
 		</tr>
 		<tr>
-				<c:if test="${noticeInfo.attachFile != null && noticeInfo.attachFile != ''}">
+				<td><c:if test="${noticeInfo.attachFile != null && noticeInfo.attachFile != ''}">
 					<img width="200px" src="images/${noticeInfo.attachFile }">
-				</c:if>
-			</td>
+				</c:if></td>
+			
 		</tr>
 		<tr>
 			<td colspan="2" align="center">
@@ -34,6 +34,3 @@
 			</td>
 	</table>
 </form>
-<script>
-
-</script>
