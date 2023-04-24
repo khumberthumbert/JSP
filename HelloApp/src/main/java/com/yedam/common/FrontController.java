@@ -14,12 +14,13 @@ import javax.servlet.http.HttpServletResponse;
 import com.yedam.member.control.LoginControl;
 import com.yedam.member.control.LoginFormControl;
 import com.yedam.member.control.LogoutControl;
-import com.yedam.notice.control.ANControl;
 import com.yedam.notice.control.AddNoticeControl;
+import com.yedam.notice.control.AddReplyControl;
 import com.yedam.notice.control.GetNoticeControl;
 import com.yedam.notice.control.ModifyNoticeControl;
 import com.yedam.notice.control.NoticeAddForm;
 import com.yedam.notice.control.NoticeListControl;
+import com.yedam.notice.control.ReplyListControl;
 
 public class FrontController extends HttpServlet {
 	
@@ -37,9 +38,9 @@ public class FrontController extends HttpServlet {
 		
 		//공지사항.
 		map.put("/noticeList.do", new NoticeListControl());
-		map.put("/AN", new ANControl());
-		//map.put("/noticeAddForm.do", new NoticeAddForm());
-		//map.put("/addNotice.do", new AddNoticeControl());
+		//map.put("/AN", new ANControl());
+		map.put("/noticeAddForm.do", new NoticeAddForm());
+		map.put("/addNotice.do", new AddNoticeControl());
 		map.put("/getNotice.do", new GetNoticeControl());
 		map.put("/modifyNotice.do", new ModifyNoticeControl());
 		
@@ -48,6 +49,9 @@ public class FrontController extends HttpServlet {
 		map.put("/login.do", new LoginControl());
 		map.put("/logout.do", new LogoutControl());
 		
+		// 댓글정보.
+		map.put("/replyList.do", new ReplyListControl());
+		map.put("/addReply.do", new AddReplyControl());
 		
 	}
 	@Override
@@ -67,6 +71,12 @@ public class FrontController extends HttpServlet {
 			resp.sendRedirect(viewPage);
 			//sendRedirect 다시 이동하겠습니다.
 			return; //메소드의 종료.
+		}
+		
+		if(viewPage.endsWith(".json")) {
+			resp.setContentType("text/json;charset=UTF-8");
+			resp.getWriter().print(viewPage.substring(0, viewPage.length()-5));
+			return;
 		}
 		
 		// 페이지 재지정.
