@@ -18,7 +18,7 @@
       ];
 
       let xhtp = new XMLHttpRequest();
-      xhtp.open('get', 'charData.do');
+      xhtp.open('get', 'chartData.do');
       xhtp.send();
       xhtp.onload = function () {
         let data = JSON.parse(xhtp.response); // {'amin':3, 'sales':5 ... 'shipping':3}
