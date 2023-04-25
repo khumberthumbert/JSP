@@ -11,5 +11,4 @@ public class ReplyVO {
 	private String reply;
 	private String replyWriter;
 	private Date replyDate;
-	
 }

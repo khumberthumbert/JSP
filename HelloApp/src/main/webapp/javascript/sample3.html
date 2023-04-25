@@ -10,19 +10,20 @@
 	<table border='1'>
 		<thead><tr><th>id</th><th>fname</th><th>lname</th><th>삭제</th></tr></thead>
 		<tbody id="tlist">
-		  
+			
 		</tbody>
 	</table>
+	
 	<script>
-		// json 포맷의 데이터 활용.
-		// 서버에서 데이터를 받으려고하면 텍스트 형식으로 받아야함.
-		//data.txt -> 홍길동 user01 010-1111-2222
-		// xml -> 마크업랭긔지 태그를 쓰겠다는 것. <data><name>홍길동</name><id>user01</id><phone>010-1111-2222</phone></data>
+		// json포맷의 데이터 활용.
+		// data.txt -> 홍길동 user01 010-1111-2222
+		// xml -> <data><name>홍길동</name><id>user01</id><phone>010-1111-2222</phone></data>
 		// document.querySelector('name').innerText
-		// {"name":"홍길동", "id":user01, "phone":"010-1111-2222"} :json 포맷. 자바스크립트에서 쓰기가 편함.
-		let json = '{"name":"홍길동", "id":"user01", "phone":"010-1111-2222"}';
-		//json -> object 변경.
-		let obj = JSON.parse(json); //문자열 데이터 타입을 JSON.parse 로 오브젝트 변경 가능.
+		
+		// {"name":"홍길동","id":"user01","phone":"010-1111-2222"} : json포맷.
+		let json = '{"name":"홍길동","id":"user01","phone":"010-1111-2222"}';
+		// json -> object 변경.
+		let obj = JSON.parse(json);
 		console.log(obj.name, obj.id, obj.phone);
 		
 		let id = document.createElement('li');
@@ -33,17 +34,16 @@
 		name.innerText = obj.name;
 		document.getElementById('list').append(name);
 		
-		//비동기방식 처리 -> 대표적 XMLHttpRequest, fetch
+		// 비동기방식 처리 => 대표적 XMLHttpRequest, fetch
 		let xhtp = new XMLHttpRequest();
 		xhtp.open('get', 'MOCK_DATA.json'); // 서버에 요청할 페이지정보.
-		xhtp.send(); // 실제 페이지 요청. 
-		xhtp.onload = function () {//on붙으면 이벤트랑 관련됨
+		xhtp.send(); // 실제 페이지 요청.
+		xhtp.onload = function () { // 처리된 결과를 읽어 오는 역할
 			console.log(xhtp);
-			let result = JSON.parse(xhtp.response); //json -> javascript의 object 타입으로 바꾸겠습니다.
+			let result = JSON.parse(xhtp.response); // json -> object
 			
 			let tlist = document.getElementById('tlist');
-			
-			for(let i=0; i<result.length; i++){
+			for (let i=0; i<result.length; i++){
 				//console.log(result[i]);
 				let tr = document.createElement('tr');
 				let td = document.createElement('td');
@@ -55,12 +55,10 @@
 				td = document.createElement('td');
 				td.innerText = result[i].last_name;
 				tr.append(td);
-				//button. -> <td><button>삭제</button></td>
+				// button. => <td><button>삭제</button></td>
 				let btn = document.createElement('button');
-				btn.addEventListener('click', function() {
-					//두번째 매개값이 실행할 함수임.
+				btn.addEventListener('click', function () {
 					btn.parentElement.parentElement.remove(); // 제거.
-					
 				});
 				btn.innerText = '삭제';
 				td = document.createElement('td');

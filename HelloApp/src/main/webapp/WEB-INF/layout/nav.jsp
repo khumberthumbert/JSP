@@ -16,22 +16,20 @@
 				<li class="nav-item active"><a class="nav-link" href="#!">Home</a></li>
 				<li class="nav-item"><a class="nav-link" href="#!">Link</a></li>
 				<li class="nav-item dropdown">
-				    <c:choose>
-						<c:when test="${id != null }">
-							<a class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
-								role="button" data-bs-toggle="dropdown" aria-haspopup="true"
-								aria-expanded="false">${id }</a>
-						</c:when>
-						<c:otherwise>
-							<a class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
-								role="button" aria-haspopup="true" aria-expanded="false">Guest</a>
-						</c:otherwise>
+				<c:choose>
+				<c:when test="${id != null }">
+				<a class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
+					role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${id }</a>
+					</c:when>
+					<c:otherwise>
+					<a class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
+					role="button" aria-haspopup="true" aria-expanded="false">Guest</a>
+					</c:otherwise>
 					</c:choose> 
-						<c:if test="${id != null }">
-						<div class="dropdown-menu dropdown-menu-end"
-							aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="#!">회원정보수정</a> 
-							<a	class="dropdown-item" href="#!">Another action</a>
+					<c:if test="${id != null }">
+						<div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="modifyMember.do">회원정보수정</a> <a
+								class="dropdown-item" href="#!">Another action</a>
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" href="#!">Something else here</a>
 						</div>

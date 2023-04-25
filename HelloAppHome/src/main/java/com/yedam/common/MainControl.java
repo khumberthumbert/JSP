@@ -10,9 +10,7 @@ public class MainControl implements Control {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		req.setAttribute("myName", "Hongkildong");
 		return "product/productList.tiles";
 	}
-
 }

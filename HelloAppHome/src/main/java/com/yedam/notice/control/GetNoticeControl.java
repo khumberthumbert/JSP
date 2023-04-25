@@ -18,8 +18,7 @@ public class GetNoticeControl implements Control {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO param : nid
-		
+		// param: nid
 		String nid = req.getParameter("nid");
 		String page = req.getParameter("page");
 		
@@ -27,20 +26,18 @@ public class GetNoticeControl implements Control {
 		NoticeVO vo = service.getNotice(Integer.parseInt(nid));
 		req.setAttribute("noticeInfo", vo);
 		req.setAttribute("pageNum", page);
-		
-		//첨부파일이 있으면...?
-		//첨부파일의 타입을 체크.
-		if(vo.getAttachFile() != null) {
+		// 첨부파일이 있으면...?
+		// 첨부파일의 타입을 체크
+
+		if (vo.getAttachFile() != null) {
 			String imgPath = req.getServletContext().getRealPath("images");
 			Path file = Paths.get(imgPath + "/" + vo.getAttachFile());
 			System.out.println(Files.probeContentType(file));
-			//image/jpg, image/png, text/plain, 
+			// image/jpg, image/png, text/plain,
 			String fileType = Files.probeContentType(file);
-			System.out.println(fileType);
 			req.setAttribute("fileType", fileType.substring(0, fileType.indexOf("/")));
-			//req.setAttribute("fileType", fileType.substring(0, 5));
 		}
-		
+
 		return "notice/noticeGet.tiles";
 	}
 

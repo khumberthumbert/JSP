@@ -1,42 +1,45 @@
 package com.yedam.domain;
 
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
-import com.yedam.notice.mapper.NoticeMapper;
-import com.yedam.notice.domain.NoticeVO;
+import com.yedam.member.mapper.MemberMapper;
 
 public class SampleExe2 {
 	public static void main(String[] args) {
 		SqlSessionFactory sqlSessionFactory = com.yedam.common.DataSource.getInstance();
 		try (SqlSession session = sqlSessionFactory.openSession(true)) {
-			NoticeMapper mapper = session.getMapper(NoticeMapper.class);
-			NoticeVO nvo = new NoticeVO();
-			nvo.setNoticeId(3);
-			nvo.setNoticeWriter("user05");
-			nvo.setNoticeTitle("ttestt");
-			nvo.setNoticeSubject("글 내용 입니다.잉잉dld잉잉잉ㄴ");
-			//mapper.insertNotice(nvo);
-			mapper.updateNotice(nvo);
-			//mapper.deleteNotice(4);
-			//System.out.println(mapper.searchNotice(3));
+			//NoticeMapper mapper = session.getMapper(NoticeMapper.class);
+			MemberMapper mapper = session.getMapper(MemberMapper.class);
 			
-					
-			for(NoticeVO vo : mapper.noticeList()) {
-				System.out.println(vo);
+			//NoticeVO nvo = new NoticeVO();
+			
+			List<Map<String, Object>> list = mapper.memberByDept();
+			//[{Adminstration, 1}, {Accounting, 2}.....{}]
+			
+			for(Map<String, Object> map : list) {
+			Set<String> set = map.keySet();
+			for(String key : set) {
+				System.out.println(map.get("DEPARTMENT_NAME") + ", " + map.get("CNT"));
 			}
 			
-//			Employee empl = new Employee();
-//			empl.setEmployeeId(310);
-//			empl.setLastName("Hong");
-//			empl.setEmail("hon1n@email");
-//			empl.setJobId("IT_PROG");
-//			
-//			mapper.addEmp(empl);
-//			session.commit();
-//			
-//			Employee emp = mapper.getEmp(310);
-//			System.out.println(emp);
+			
+//			nvo.setNoticeId(4);
+//			nvo.setNoticeWriter("user01");
+//			nvo.setNoticeTitle("ree:test");
+//			nvo.setNoticeSubject("ree:글내용입니다....아.");
+//			mapper.insertNotice(nvo);
+//			mapper.updateNotice(nvo);
+//			mapper.deleteNotice(4);
+//			System.out.println(mapper.searchNotice(3));
+			
+			//for(NoticeVO vo : mapper.noticeList()) {
+//				System.out.println(vo);
+			}
 		}
 	}
 }

@@ -1,12 +1,10 @@
 package com.yedam.member.domain;
 
-import java.util.Date;
-
+import java.sql.Date;
 import lombok.Data;
 
 @Data
 public class MemberVO {
-	//멤버정보를 담아놓는.
 	private String email;
 	private String password;
 	private String name;

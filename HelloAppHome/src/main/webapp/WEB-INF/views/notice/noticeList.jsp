@@ -28,8 +28,8 @@
 
 .pagination a:hover:not(.active) {background-color: #ddd;}
 </style>
-<p>${pageInfo }</p>
-
+	
+	<p>${pageInfo }</p>
 	<c:set var="no" value="0"></c:set>
 	<table class="table">
 		<thead>
@@ -43,8 +43,10 @@
 		</thead>
 		<c:forEach var="notice" items="${list }">
 			<tr>
-			<td><c:out value="${no=no+1 }"></c:out></td>
-				<td><a href="getNotice.do?page=${pageInfo.pageNum}&nid=${notice.noticeId }">${notice.noticeId }</a></td>
+				<td>
+					<c:out value="${no=no+1 }"></c:out>
+				</td>
+				<td><a href="getNotice.do?page=${pageInfo.pageNum }&nid=${notice.noticeId }">${notice.noticeId }</a></td>
 				<td>${notice.noticeTitle }</td>
 				<td>${notice.noticeWriter }</td>
 				<td>${notice.hitCount }</td>
@@ -53,15 +55,15 @@
 	</table>
 	<hr>
 	<div class="center">
-    <div class="pagination">
+	<div class="pagination">
 	<c:if test="${pageInfo.prev }">
-	  <a href="noticeList.do?page=${pageInfo.startPage-1 }">Previous</a>
-    </c:if>
+		<a href="noticeList.do?page=${pageInfo.startPage-1 }">Previous</a>
+	</c:if>
 	<c:forEach var="i" begin="${pageInfo.startPage }" end="${pageInfo.endPage }">
-	  <a class="${i == pageInfo.pageNum ? 'active' : '' }" href="noticeList.do?page=${i }"> ${i }</a>
+		<a class="${i == pageInfo.pageNum ? 'active' : '' }" href="noticeList.do?page=${i }">${i } </a>
 	</c:forEach>
 	<c:if test="${pageInfo.next }">
-	  <a href="noticeList.do?page=${pageInfo.endPage+1 }">Next</a>
+		<a href="noticeList.do?page=${pageInfo.endPage+1 }">Next</a>
 	</c:if>
-	</div>
-	</div>
+	</div></div>
+	<p>${reqInfo}</p>

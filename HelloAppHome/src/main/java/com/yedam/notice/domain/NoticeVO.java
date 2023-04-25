@@ -1,5 +1,7 @@
 package com.yedam.notice.domain;
 
+
+
 import java.util.Date;
 
 import lombok.Data;

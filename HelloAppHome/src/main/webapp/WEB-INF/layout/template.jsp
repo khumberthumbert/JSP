@@ -18,17 +18,17 @@
         <div class="d-flex" id="wrapper">
             <!-- Sidebar-->
             <tiles:insertAttribute name="sidebar"></tiles:insertAttribute>
-            
-            
+                        
             <!-- Page content wrapper-->
             <div id="page-content-wrapper">
                 <!-- Top navigation-->
-                <tiles:insertAttribute name="nav"></tiles:insertAttribute>
+				<tiles:insertAttribute name="nav"></tiles:insertAttribute>
                 
                 <!-- Page content-->
                 <div class="container-fluid">
-                    <tiles:insertAttribute name="body"></tiles:insertAttribute>
+					<tiles:insertAttribute name="body"></tiles:insertAttribute>
                 </div>
+                
             </div>
         </div>
         <!-- Bootstrap core JS-->

@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <p>로그인화면(loginForm.jsp)</p>
-<form action="login.do" method="post"> 
+
+<form action="login.do" method="post">
     <table class="table">
         <tr>
             <th>이메일</th>

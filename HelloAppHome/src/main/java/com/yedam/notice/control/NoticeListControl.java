@@ -17,7 +17,6 @@ public class NoticeListControl implements Control {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		
 		String pageStr = req.getParameter("page");
 		pageStr = pageStr == null ? "1" : pageStr;
@@ -31,9 +30,7 @@ public class NoticeListControl implements Control {
 		req.setAttribute("list", list);
 		req.setAttribute("pageInfo", dto);
 		
-		
-		//return "WEB-INF/views/notice/noticeList.jsp";
+//		return "WEB-INF/views/notice/noticeList.jsp";
 		return "notice/noticeList.tiles";
 	}
-
 }

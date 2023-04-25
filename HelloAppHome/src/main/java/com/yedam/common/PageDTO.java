@@ -16,17 +16,17 @@ public class PageDTO {
 	public PageDTO(int pageNum, int total) {
 		this.pageNum = pageNum;
 		
-		this.endPage = (int) Math.ceil(this.pageNum / 10.0) * 10;
+		this.endPage = (int) Math.ceil(this.pageNum/10.0) * 10;
 		this.startPage = this.endPage - 9;
 		
-		//ceil 메소드 매개값 double임.
 		int realEnd = (int) (Math.ceil(total / 10.0));
 		
-		if (realEnd < this.endPage) {
+		if(realEnd < this.endPage) {
 			this.endPage = realEnd;
 		}
 		
 		this.prev = this.startPage > 1;
 		this.next = this.endPage < realEnd;
+		
 	}
 }

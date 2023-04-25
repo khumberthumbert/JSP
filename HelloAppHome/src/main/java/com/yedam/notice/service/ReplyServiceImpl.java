@@ -8,8 +8,8 @@ import com.yedam.common.DataSource;
 import com.yedam.notice.domain.ReplyVO;
 import com.yedam.notice.mapper.ReplyMapper;
 
-public class ReplyServiceImpl implements ReplyService{
-
+public class ReplyServiceImpl implements ReplyService {
+	
 	SqlSession session = DataSource.getInstance().openSession(true);
 	ReplyMapper mapper = session.getMapper(ReplyMapper.class);
 	
@@ -17,9 +17,14 @@ public class ReplyServiceImpl implements ReplyService{
 	public List<ReplyVO> getReplies(int noticeId) {
 		return mapper.replyList(noticeId);
 	}
+	
 	@Override
 	public boolean addReply(ReplyVO vo) {
 		return mapper.insertReply(vo) == 1;
 	}
 	
+	@Override
+	public boolean removeReply(int replyId) {
+		return mapper.deleteReply(replyId) == 1;
+	}
 }

@@ -19,11 +19,11 @@ public class AddReplyControl implements Control {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		// 댓글등록 컨트롤... ing... 
+		// 댓글등록 컨트롤...ing...
 		String id = req.getParameter("id");
 		String reply = req.getParameter("reply");
 		String noticeId = req.getParameter("notice_id");
+		
 		
 		ReplyVO vo = new ReplyVO();
 		vo.setReplyWriter(id);
@@ -33,16 +33,14 @@ public class AddReplyControl implements Control {
 		ReplyService service = new ReplyServiceImpl();
 		boolean result = service.addReply(vo);
 		
-		String json = ""; //json포맷 쓰려고.
+		String json = "";
 		
 		Map<String, Object> map = new HashMap<>();
 		
-		
 		if(result) {
-			// {"retCode":"Success"} JSON포맷임.
-			//json = "{\"retCode\":\"Success\", \"replyId\"}";
+			// {"retCode":"Success"}
 			//json = "{\"retCode\":\"Success\"";
-			// {"retCode":"Success", "data":vo}
+			// {"retCode":"Success", "data": vo}
 			map.put("retCode", "Success");
 			map.put("data", vo);
 			
@@ -52,7 +50,7 @@ public class AddReplyControl implements Control {
 			map.put("retCode", "Fail");
 		}
 		
-		Gson gson = new GsonBuilder().create(); //gson 객체.	
+		Gson gson = new GsonBuilder().create(); // gson 객체.
 		json = gson.toJson(map);
 		
 		return json + ".json";
