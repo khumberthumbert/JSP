@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<p>sample4.html</p>
+	<ul id="list>
+	  <li>1, kildong, Hong, 2334</li>
+	  <li>2, k, Lee, 2222</li>
+	  <li>3, a, kim, 1111</li>
+	  <li>4, b, Na, 3333</li>
+	  <li>5, c, Be, 4444</li>
+	</ul>
+	<script>
+	  let xht = new XMLHttpRequest(); //비동기방식처리.
+	  xht.open('get','MOCK_DATA.json'); //오픈하는 방식과 유알엘 정보
+	  xht.send();
+	  xht.onload = function () {
+		  //xht.response; //결과값이 여기 닮겨요
+		  //console.log(JSON.parse(xht.response)); //JSON.parse: 자바스크립트의 오브젝트 타입으로 바꿔줌.
+	  }
+	  
+	  fetch('MOCK_DATA.json') // fetch : 비동기방식의 코드들을 동기방식으로. 체인체인체인. 쓰는 방식이 편함. 여기서 넘겨주는 결과값이 밑줄resolve
+	  .then(function(resolve){ //성공하면 실행할 함수
+		  console.log('success'); //페이지가 없는것도 처리 해줌
+	  	  return resolve.text(); //처리 중인 값을 텍스트 형태로 다시 리턴하겠습니다.
+	  }, function(){//, 실패하면 실행할 함수.
+		  console.log('error');
+	  }) 
+	  .then(function(result){ //메소드인데 매개값을 함수로 받아요
+		  console.log('success', result);
+	  }, function(error){
+		  console.log('error', error);
+	  })
+	  
+	  fetch('MOCK_DATA.json')
+	  .then(resolve => resolve.json() ) //결과값을 제이슨 타입의 객체로 파악해서 자바스크립트의 타입으로 바꿔주겠습니다.
+	  //텍스트로 변환시켜서 결과값을 받아오겠습니다.text()
+	  //.then(function(result) { console.log(result); })
+	  .then( result => {
+		  console.log(result);
+		  for (let i=0; i<result.length; i++){
+			  // 코드 작성.
+			  let li = document.createElement('li');
+			  li.innerText = result[i].
+		  }
+		  
+	  })
+	  .catch(error => console.log(error))
+	  
+	  
+	</script>
+</body>
+</html>
