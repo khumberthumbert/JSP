@@ -17,6 +17,7 @@ import com.yedam.member.control.LogoutControl;
 import com.yedam.member.control.modifyMemberControl;
 import com.yedam.notice.control.AddNoticeControl;
 import com.yedam.notice.control.AddReplyControl;
+import com.yedam.notice.control.AddSumNotice;
 import com.yedam.notice.control.GetNoticeControl;
 import com.yedam.notice.control.ModifyNoticeControl;
 import com.yedam.notice.control.NoticeAddForm;
