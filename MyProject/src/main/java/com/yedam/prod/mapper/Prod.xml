@@ -6,16 +6,8 @@
 	<select id="getProduct" resultType="prod">
 	  select * from tbl_product
 	</select>
-	<select id="getProd" resultType="prod">
-		select * from tbl_product order by
-		product_code
+	<select id="infoProd" parameterType="int" resultType="prod">
+		select * from tbl_product
+		where product_code = #{productCode}
 	</select>
-	<insert id="addProd" parameterType="prod">
-		insert into tbl_product
-		values (#{prodCode}, #{prodName}, #{productExpl}, #{productPrice}, #{productSale}, #{productGrade},#{attachFile})
-	</insert>
-	<delete id="delProd" parameterType="int">
-		delete from tbl_product where
-		product_code = #{prodCode}
-	</delete>
 </mapper>

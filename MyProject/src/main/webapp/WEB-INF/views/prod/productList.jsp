@@ -8,13 +8,13 @@
 		<div class="badge bg-dark text-white position-absolute"
 			style="top: 0.5rem; right: 0.5rem">Sale</div>
 		<!-- Product image-->
-		<a href=""><img class="card-img-top"
+		<a href="prodMain.do?prodCode=${prod.productCode}"><img class="card-img-top"
 			src="images/${prod.attachFile }" alt="..." /></a>
 		<!-- Product details-->
 		<div class="card-body p-4">
 			<div class="text-center">
 				<!-- Product name-->
-				<h5 class="fw-bolder"><a href="prodMain.do">${prod.productName }</a></h5>
+				<h5 class="fw-bolder"><a href="prodMain.do?prodCode=${prod.productCode}">${prod.productName }</a></h5>
 				<!-- Product reviews-->
 				<div class="d-flex justify-content-center small text-warning mb-2">
 					<c:forEach begin="1" end="${prod.productGrade }">

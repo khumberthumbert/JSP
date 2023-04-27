@@ -13,24 +13,11 @@ public class ProductServiceImpl implements ProductService{
 	SqlSession session = DataSource.getInstance().openSession(true);
 	ProductMapper mapper = session.getMapper(ProductMapper.class);
 	
-	
-
-
 
 
 	@Override
-	public ProductVO getProd(ProductVO vo) {
-		return mapper.infoProd();
-	}
-
-	@Override
-	public boolean addProduct(ProductVO vo) {
-		return mapper.addProd(vo) ==1;
-	}
-
-	@Override
-	public boolean removeProduct(int prodCode) {
-		return mapper.delProd(prodCode) == 1;
+	public ProductVO infoProd(int productCode) {
+		return mapper.infoProd(productCode);
 	}
 
 	@Override

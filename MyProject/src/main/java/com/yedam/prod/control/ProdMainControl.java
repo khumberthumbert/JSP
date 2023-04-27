@@ -20,20 +20,10 @@ public class ProdMainControl implements Control {
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		String prodCode = req.getParameter("prodCode");
-		String page = req.getParameter("page");
 		
 		ProductService service = new ProductServiceImpl();
-		ProductVO vo = service.getProd(Integer.parseInt(prodCode));
+		ProductVO vo = service.infoProd(Integer.parseInt(prodCode));
 		req.setAttribute("ProductInfo", vo);
-
-
-		if (vo.getAttachFile() != null) {
-			String imgPath = req.getServletContext().getRealPath("images");
-			Path file = Paths.get(imgPath + "/" + vo.getAttachFile());
-			System.out.println(Files.probeContentType(file));
-			String fileType = Files.probeContentType(file);
-			req.setAttribute("fileType", fileType.substring(0, fileType.indexOf("/")));
-		}
 		
 		return "prod/productMain.tiles";
 	}
