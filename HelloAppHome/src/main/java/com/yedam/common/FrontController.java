@@ -42,7 +42,7 @@ public class FrontController extends HttpServlet {
 
 		// 공지사항
 		map.put("/noticeList.do", new NoticeListControl());
-		map.put("/noticeAddForm.do", new NoticeAddForm());
+		//map.put("/noticeAddForm.do", new NoticeAddForm());
 		map.put("/addSumNotice.do", new AddSumNotice());
 		//map.put("/addNotice.do", new AddNoticeControl());
 		//map.put("/getNotice.do", new GetNoticeControl());
