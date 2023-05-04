@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lottery.multiboard.mapper.MultiMapper">
+	<select id="listBoard" parameterType="String" resultType="multi">
+		 select * from multi_board m join lottery_user l on (m.user_no = l.user_no) where m.mb_grade = #{mbGrade}
+	</select>
+	<select id="getCount" parameterType="String" resultType="int">
+		select count(*) from multi_board where mb_grade= #{mbGrade}
+	</select>
+</mapper>

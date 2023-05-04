@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lottery.csboard.mapper.CSBoardMapper">
+	<select id="csList" parameterType="String" resultType="board">
+    select *
+	from cs_board
+	join lottery_user on (cs_board.user_no = lottery_user.user_no)
+	where cb_grade=#{cbGrade} 
+    order by 1 desc
+	</select>
+	
+	<select id="searchBoard" parameterType="int" resultType="board">
+       select * 
+       from cs_board c join lottery_user l
+       on l.user_no = c.user_no
+       where cb_grade = 'c' and cb_id = #{cbId}
+    </select>
+    
+    <insert id="insertBoard" parameterType="board">
+    	insert into cs_board
+    	values (cb_seq.nextval, 1, 'c', #{cbTitle}, #{cbSubject}, TO_date(sysdate, 'YYYY-MM-DD'), #{cbAttach}, #{cbHit})
+    </insert>
+    
+    <delete id="deleteBoard" parameterType="int">
+    	delete from cs_board
+    	where cb_id = #{cbId}
+    </delete>
+	   
+	<update id="updateBoard" parameterType="board">
+		update cs_board
+		set cb_title = #{cbTitle},
+		cb_subject = #{cbSubject}
+		where cb_id = #{cbId}
+	</update>
+	
+</mapper>

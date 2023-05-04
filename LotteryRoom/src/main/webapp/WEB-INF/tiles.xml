@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	<definition name="LotteryRoomMain" template="/WEB-INF/layout/dashboard.jsp">
+		<put-attribute name="top" value="/WEB-INF/layout/top.jsp" />
+		<put-attribute name="middle" value="/WEB-INF/layout/middle.jsp" />
+		<put-attribute name="bottom" value="/WEB-INF/layout/bottom.jsp" />
+	</definition>
+	<definition name="LotteryRoomMenu" template="/WEB-INF/layout/dashmenu.jsp">
+		<put-attribute name="top" value="/WEB-INF/layout/top.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/layout/sidebar.jsp" />
+		<put-attribute name="middle" value="/WEB-INF/layout/middle.jsp" />
+		<put-attribute name="bottom" value="/WEB-INF/layout/bottom.jsp" />
+	</definition>		
+
+	<definition name="WILDCARD:main/*" extends="LotteryRoomMain">
+		<put-attribute name="middle" value="/WEB-INF/views/main/{1}.jsp"></put-attribute>
+	</definition>
+	<definition name="WILDCARD:*/*" extends="LotteryRoomMenu">
+		<put-attribute name="middle" value="/WEB-INF/views/{1}/{2}.jsp"></put-attribute>
+	</definition>
+		
+</tiles-definitions>
